@@ -28,6 +28,12 @@
 
 从树结构中找到目标节点
 
+### treeMap
+
+`function`
+
+对一个树形结构做递归map操作
+
 ### flatToTree
 
 `function`

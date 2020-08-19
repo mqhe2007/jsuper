@@ -81,6 +81,21 @@ function findNodeFromTree(kv, treeData) {
   }
 }
 /**
+ * 对一个树形结构做递归map操作
+ * @param {array} nodes 树结构数组
+ * @param {function} handler 数据处理程序，需返回。
+ * @param {number} depth 节点的深度
+ */
+function treeMap(nodes, handler, depth = 1) {
+  return nodes.map((item) => {
+    let _item = handler(item, depth);
+    if (item.children && item.children.length > 0) {
+      _item.children = treeMap(item.children, handler, depth + 1);
+    }
+    return _item;
+  });
+}
+/**
  * 扁平化结构数据转换成树结构
  * @param {array} flatArray 扁平结构的数组
  * @param {object} param1 用于指定id，pid属性的对象
@@ -153,4 +168,13 @@ class EventBus {
     return events;
   }
 }
-export { v, platform, DoNotMove, UUID, findNodeFromTree, flatToTree, EventBus };
+export {
+  v,
+  platform,
+  DoNotMove,
+  UUID,
+  findNodeFromTree,
+  flatToTree,
+  EventBus,
+  treeMap,
+};
