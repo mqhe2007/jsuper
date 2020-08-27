@@ -74,7 +74,7 @@ function findNodeFromTree(kv, treeData) {
       return node;
     } else {
       if (node.children && node.children.length > 0) {
-        const result = findItemFromTreeData(kv, node.children);
+        const result = findNodeFromTree(kv, node.children);
         if (result) return result;
       }
     }
