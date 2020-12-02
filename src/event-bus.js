@@ -29,8 +29,8 @@ class EventBus {
    */
   on(eventName, handler) {
     if (typeof handler === "function") {
-      if (!events[eventName]) events[eventName] = new Set();
-      events[eventName].add(handler);
+      if (!this.events[eventName]) this.events[eventName] = new Set();
+      this.events[eventName].add(handler);
     }
   }
   /**
