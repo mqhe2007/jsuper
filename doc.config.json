@@ -1,0 +1,26 @@
+{
+  "source": {
+    "include": ["src/"],
+    "includePattern": ".+\\.js(doc)?$"
+  },
+  "sourceType": "module",
+  "opts": {
+    "readme": "README.md",
+    "destination": "./doc/",
+    "template": "node_modules/better-docs"
+  },
+  "templates": {
+    "search": true,
+    "better-docs": {
+      "name": "Jsuper Documentation",
+      "title": "Jsuper",
+      "hideGenerator": false,
+      "navLinks": [
+        {
+          "label": "Github",
+          "href": "https://github.com/mqhe2007/jsuper"
+        }
+      ]
+    }
+  }
+}
