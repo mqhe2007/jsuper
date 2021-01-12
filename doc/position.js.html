@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jsuper find-node-from-tree</title>
+  <title>Jsuper position.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -90,211 +92,54 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Module</p>
-                    <h1>find-node-from-tree</h1>
+                    <p>Source</p>
+                    <h1>position.js</h1>
                 </header>
                 
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description">从树结构中找到某个节点</div>
-        
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-<div class="table-container">
-    <table class="params table">
-        <thead>
-        <tr>
-            
-            <th>Name</th>
-            
-
-            <th>Type</th>
-
-            
-
-            
-
-            <th class="last">Description</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>kv</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">Array</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last">需要匹配的键值对</td>
-</tr>
-
-
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>treeData</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">Array</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last">树结构数据</td>
-</tr>
-
-
-        
-        </tbody>
-    </table>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="find-node-from-tree.js.html" class="button">View Source</a>
-            <span>
-                <a href="find-node-from-tree.js.html">find-node-from-tree.js</a>, <a href="find-node-from-tree.js.html#line1">line 1</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * 获取元素在页面中的绝对位置
+ * @module
+ * @returns {Object} 返回距离顶和左的绝对像素值：{top:0, left: 0}
+ */
+function position(el) {
+  function getElementLeft(element) {
+    var actualLeft = element.offsetLeft;
+    var current = element.offsetParent;
+
+    while (current !== null) {
+      actualLeft += current.offsetLeft;
+      current = current.offsetParent;
+    }
+
+    return actualLeft;
+  }
+
+  function getElementTop(element) {
+    var actualTop = element.offsetTop;
+    var current = element.offsetParent;
+
+    while (current !== null) {
+      actualTop += current.offsetTop;
+      current = current.offsetParent;
+    }
+
+    return actualTop;
+  }
+  return {
+    top: getElementTop(el),
+    left: getElementLeft(el),
+  };
+}
+export default position;
+</code></pre>
+        </article>
+    </section>
 
 
 

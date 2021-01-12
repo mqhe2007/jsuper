@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jsuper find-node-from-tree</title>
+  <title>Jsuper tree-filter.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -90,211 +92,38 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Module</p>
-                    <h1>find-node-from-tree</h1>
+                    <p>Source</p>
+                    <h1>tree-filter.js</h1>
                 </header>
                 
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description">从树结构中找到某个节点</div>
-        
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-<div class="table-container">
-    <table class="params table">
-        <thead>
-        <tr>
-            
-            <th>Name</th>
-            
-
-            <th>Type</th>
-
-            
-
-            
-
-            <th class="last">Description</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>kv</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">Array</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last">需要匹配的键值对</td>
-</tr>
-
-
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>treeData</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">Array</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last">树结构数据</td>
-</tr>
-
-
-        
-        </tbody>
-    </table>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="find-node-from-tree.js.html" class="button">View Source</a>
-            <span>
-                <a href="find-node-from-tree.js.html">find-node-from-tree.js</a>, <a href="find-node-from-tree.js.html#line1">line 1</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * 对一个树形结构做递归filter操作
+ * @module
+ * @param {Array} nodes - 树结构数组
+ * @param {Function} handler - 数据处理程序。
+ * @param {Number} depth - 递归的深度值，初始为1
+ */
+function treeFilter(nodes, handler, depth = 1) {
+  return nodes.filter(item => {
+    let result = handler(item, depth);
+    if (result) {
+      if (item.children &amp;&amp; item.children.length > 0) {
+        item.children = treeFilter(item.children, handler, depth + 1);
+      }
+    }
+    return result;
+  });
+}
+export default treeFilter;
+</code></pre>
+        </article>
+    </section>
 
 
 

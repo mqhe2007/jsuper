@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jsuper find-node-from-tree</title>
+  <title>Jsuper tree-filter</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -91,7 +91,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Module</p>
-                    <h1>find-node-from-tree</h1>
+                    <h1>tree-filter</h1>
                 </header>
                 
 
@@ -112,7 +112,7 @@
     <div class="container-overview">
     
         
-            <div class="description">从树结构中找到某个节点</div>
+            <div class="description">对一个树形结构做递归filter操作</div>
         
 
         
@@ -153,7 +153,7 @@
             
 <tr class="deep-level-0">
   
-      <td class="name"><code>kv</code></td>
+      <td class="name"><code>nodes</code></td>
   
 
   <td class="type">
@@ -169,7 +169,7 @@
 
   
 
-  <td class="description last">需要匹配的键值对</td>
+  <td class="description last">树结构数组</td>
 </tr>
 
 
@@ -178,13 +178,13 @@
             
 <tr class="deep-level-0">
   
-      <td class="name"><code>treeData</code></td>
+      <td class="name"><code>handler</code></td>
   
 
   <td class="type">
   
       
-<span class="param-type">Array</span>
+<span class="param-type">function</span>
 
 
   
@@ -194,7 +194,32 @@
 
   
 
-  <td class="description last">树结构数据</td>
+  <td class="description last">数据处理程序。</td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>depth</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">递归的深度值，初始为1</td>
 </tr>
 
 
@@ -240,9 +265,9 @@
 
     
         <p class="tag-source">
-            <a href="find-node-from-tree.js.html" class="button">View Source</a>
+            <a href="tree-filter.js.html" class="button">View Source</a>
             <span>
-                <a href="find-node-from-tree.js.html">find-node-from-tree.js</a>, <a href="find-node-from-tree.js.html#line1">line 1</a>
+                <a href="tree-filter.js.html">tree-filter.js</a>, <a href="tree-filter.js.html#line1">line 1</a>
             </span>
         </p>
     
