@@ -4,12 +4,18 @@
  * @param {Array} nodes - 树结构数组
  * @param {Function} handler - 数据处理程序。
  * @param {Number} depth - 递归的深度值，初始为1
+ * @param {String} childrenKey - 子集的key
  */
-function treeMap(nodes, handler, depth = 1) {
-  return nodes.map((item) => {
+function treeMap(nodes, handler, childrenKey = "children", depth = 1) {
+  return nodes.map(item => {
     let _item = handler(item, depth);
-    if (item.children && item.children.length > 0) {
-      _item.children = treeMap(item.children, handler, depth + 1);
+    if (item[childrenKey] && item[childrenKey].length > 0) {
+      _item.children = treeMap(
+        item[childrenKey],
+        handler,
+        childrenKey,
+        depth + 1
+      );
     }
     return _item;
   });
