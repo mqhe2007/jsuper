@@ -1,6 +1,6 @@
 {
   "name": "@qingjin/jsuper",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "js utils",
   "main": "dist/index.js",
   "files": [
