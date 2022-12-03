@@ -109,7 +109,7 @@
  * @param {Function} handler - 数据处理程序。
  * @param {String} childrenKey - 子集的key
  * @param {Number} depth - 递归的深度值，初始为1
- * @param {Number} parent - 父对象
+ * @param {Object} parent - map后节点的父对象
  */
 function treeMap(nodes, handler, childrenKey = "children", depth = 1, parent) {
   return nodes.map((item) => {
@@ -120,7 +120,7 @@ function treeMap(nodes, handler, childrenKey = "children", depth = 1, parent) {
         handler,
         childrenKey,
         depth + 1,
-        item
+        _item
       );
     }
     return _item;
