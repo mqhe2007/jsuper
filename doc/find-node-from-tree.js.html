@@ -107,23 +107,26 @@
  * @module
  * @param {Array} kv - 需要匹配的键值对
  * @param {Array} treeData - 树结构数据
- * @param {Boolean} hasParent - 是否包含父级节点
+ * @param {Boolean} returnParent - 是否包含父级节点
  */
-function findNodeFromTree(kv, treeData, hasParent) {
+function findNodeFromTree(kv, treeData, returnParent, parentNode) {
   for (let i = 0; i &lt; treeData.length; i++) {
     const node = treeData[i];
     if (node[kv[0]] === kv[1]) {
-      return node;
+      if (returnParent &amp;&amp; parentNode) {
+        node.parent = parentNode;
+        return node;
+      } else {
+        return node;
+      }
     } else {
       if (node.children &amp;&amp; node.children.length > 0) {
-        const result = findNodeFromTree(kv, node.children);
+        if (parentNode) {
+          node.parent = parentNode;
+        }
+        const result = findNodeFromTree(kv, node.children, returnParent, node);
         if (result) {
-          if (hasParent) {
-            result.parent = node;
-          }
           return result;
-        } else {
-          return undefined;
         }
       }
     }
