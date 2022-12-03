@@ -107,12 +107,13 @@
  * @module
  * @param {Array} list - 树结构数组
  * @param {Function} handler - 数据处理程序。
+ * @param {Object} parent - 父级
  */
-function treeEach(list, handler) {
+function treeEach(list, handler, parent) {
   list.forEach((item) => {
-    handler(item);
+    handler(item, parent);
     if (item.children?.length) {
-      treeEach(item.children, handler);
+      treeEach(item.children, handler, item);
     }
   });
 }
