@@ -8,7 +8,7 @@ function treeEach(list, handler) {
   list.forEach((item) => {
     handler(item);
     if (item.children?.length) {
-      treeEach(item.children);
+      treeEach(item.children, handler);
     }
   });
 }
