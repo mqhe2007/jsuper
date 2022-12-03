@@ -7,6 +7,7 @@ import flatToTree from "./flat-to-tree";
 import EventBus from "./event-bus";
 import position from "./position";
 import treeFilter from "./tree-filter";
+import treeEach from "./tree-each";
 export {
   platform,
   NoActionListener,
@@ -17,4 +18,5 @@ export {
   treeMap,
   position,
   treeFilter,
+  treeEach,
 };

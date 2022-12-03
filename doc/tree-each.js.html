@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jsuper Home</title>
+  <title>Jsuper tree-each.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -90,38 +92,34 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>tree-each.js</h1>
                 </header>
                 
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
     <section>
-        <article><h1>jsuper</h1>
-<p>我的 js 实用工具库</p></article>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * 对一个树形结构做递归each操作
+ * @module
+ * @param {Array} list - 树结构数组
+ * @param {Function} handler - 数据处理程序。
+ */
+function treeEach(list, handler) {
+  list.forEach((item) => {
+    handler(item);
+    if (item.children?.length) {
+      treeEach(item.children);
+    }
+  });
+}
+export default treeEach;
+</code></pre>
+        </article>
     </section>
-
-
 
 
 
