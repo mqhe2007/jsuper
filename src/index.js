@@ -5,6 +5,7 @@ import findNodeFromTree from "./find-node-from-tree";
 import treeMap from "./tree-map";
 import flatToTree from "./flat-to-tree";
 import EventBus from "./event-bus";
+import useEventBus from "./use-event-bus";
 import position from "./position";
 import treeFilter from "./tree-filter";
 import treeEach from "./tree-each";
@@ -15,6 +16,7 @@ export {
   findNodeFromTree,
   flatToTree,
   EventBus,
+  useEventBus,
   treeMap,
   position,
   treeFilter,
