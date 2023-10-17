@@ -63,3 +63,5 @@ const useEvnetBus = () => {
     getEvents,
   };
 };
+
+export default useEvnetBus;

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jsuper tree-each</title>
+  <title>Jsuper use-event-bus.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -90,236 +92,84 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Module</p>
-                    <h1>tree-each</h1>
+                    <p>Source</p>
+                    <h1>use-event-bus.js</h1>
                 </header>
                 
 
 
 
-
-<section>
-
-<header>
     
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description">对一个树形结构做递归each操作</div>
-        
-
-        
-            
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-<div class="table-container">
-    <table class="params table">
-        <thead>
-        <tr>
-            
-            <th>Name</th>
-            
-
-            <th>Type</th>
-
-            
-
-            
-
-            <th class="last">Description</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>list</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">Array</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last">树结构数组</td>
-</tr>
-
-
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>handler</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">function</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last">数据处理程序。</td>
-</tr>
-
-
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>parent</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">Object</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last">父级</td>
-</tr>
-
-
-        
-        </tbody>
-    </table>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="tree-each.js.html" class="button">View Source</a>
-            <span>
-                <a href="tree-each.js.html">tree-each.js</a>, <a href="tree-each.js.html#line1">line 1</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * 事件总线
+ */
+/**
+ * 监听
+ * @param {String} eventName - 事件名称
+ * @param {Function} handler - 回调处理程序
+ */
+const on = (eventName, handler) => {
+  if (typeof handler === "function") {
+    if (!window[eventBusKey].has(eventName))
+      window[eventBusKey].set(eventName, new Set());
+    window[eventBusKey].get(eventName).add(handler);
+  }
+};
+/**
+ * 发射
+ * @param {String} eventName - 事件名称
+ * @param {Any} payload - 事件载荷
+ */
+const emit = (eventName, payload) => {
+  if (!window[eventBusKey].has(eventName))
+    return console.warn(
+      `${eventName}事件触发了，但是没有监听者，什么都不会发生。`
+    );
+  for (let func of window[eventBusKey].get(eventName).values()) {
+    func(payload);
+  }
+};
+/**
+ * 取消一个监听程序
+ * @param {String} eventName - 事件名称
+ * @param {Function} handler - 回调处理程序
+ */
+const off = (eventName, handler) => {
+  if (!handler) return console.warn(`取消监听必须传入已被监听的事件处理函数`);
+  if (!window[eventBusKey].has(eventName)) return;
+  window[eventBusKey].get(eventName).delete(handler);
+};
+/**
+ * 清理事件总线
+ */
+const clear = () => {
+  window[eventBusKey].clear();
+};
+/**
+ * 获取事件清单
+ */
+const getEvents = () => {
+  return window[eventBusKey];
+};
+
+const useEvnetBus = () => {
+  const eventBusKey = Symbol.for("___JSUPER_EVENT_BUS___");
+  if (!window[eventBusKey]) {
+    window[eventBusKey] = new Map();
+  }
+  return {
+    emit,
+    on,
+    off,
+    clear,
+    getEvents,
+  };
+};
+</code></pre>
+        </article>
+    </section>
 
 
 
