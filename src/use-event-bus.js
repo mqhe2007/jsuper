@@ -21,11 +21,11 @@ const on = (eventName, handler) => {
  * @param {Any} payload - 事件载荷
  */
 const emit = (eventName, payload) => {
+  const eventBusKey = Symbol.for("___JSUPER_EVENT_BUS___");
   if (!window[eventBusKey].has(eventName))
     return console.warn(
       `${eventName}事件触发了，但是没有监听者，什么都不会发生。`
     );
-  const eventBusKey = Symbol.for("___JSUPER_EVENT_BUS___");
   for (let func of window[eventBusKey].get(eventName).values()) {
     func(payload);
   }
