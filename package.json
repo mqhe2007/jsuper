@@ -1,6 +1,6 @@
 {
   "name": "@qingjin/jsuper",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "js utils",
   "main": "dist/index.js",
   "files": [
@@ -27,7 +27,9 @@
     "url": "https://github.com/mqhe2007/jsuper/issues"
   },
   "homepage": "https://github.com/mqhe2007/jsuper#readme",
-  "dependencies": {},
+  "dependencies": {
+    "lodash-es": "^4.17.21"
+  },
   "devDependencies": {
     "@babel/core": "^7.11.1",
     "@babel/plugin-external-helpers": "^7.10.4",
