@@ -70,10 +70,7 @@ declare function treeMap(nodes: Array<any>, handler: Function, childrenKey?: str
  * @param {String} parentkey - 用于指定元素的父元素的key
  * @returns {Object[]} 由树结构组成的数组
  */
-interface FlatItem {
-    [key: string]: any;
-}
-declare function flatToTree(flatArray: FlatItem[], key: string, parentkey: string): FlatItem[];
+declare function flatToTree(flatArray: any[], key: string, parentkey: string): any[];
 
 /**
  * 事件总线

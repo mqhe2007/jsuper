@@ -7,19 +7,11 @@
  * @returns {Object[]} 由树结构组成的数组
  */
 
-interface FlatItem {
-  [key: string]: any;
-}
-
-function flatToTree(
-  flatArray: FlatItem[],
-  key: string,
-  parentkey: string
-): FlatItem[] {
-  let result: FlatItem[] = [];
-  const buildParent = function (item: FlatItem): FlatItem {
+function flatToTree(flatArray: any[], key: string, parentkey: string): any[] {
+  let result: any[] = [];
+  const buildParent = function (item: any): any {
     const parentIndex = flatArray.findIndex(
-      (item_: FlatItem) => item_[key] === item[parentkey]
+      (item_: any) => item_[key] === item[parentkey]
     );
     if (parentIndex > -1) {
       const parent = flatArray.splice(parentIndex, 1)[0];
@@ -34,7 +26,7 @@ function flatToTree(
       return item;
     }
   };
-  flatArray.forEach((item: FlatItem) => {
+  flatArray.forEach((item: any) => {
     if (!item[parentkey]) {
       result.push(item);
     } else {
