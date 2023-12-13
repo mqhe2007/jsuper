@@ -6,7 +6,7 @@
   "sourceType": "module",
   "opts": {
     "readme": "README.md",
-    "destination": "./doc/",
+    "destination": "./docs/",
     "template": "node_modules/better-docs"
   },
   "templates": {
