@@ -9,4 +9,5 @@ export default defineConfig({
   clean: true,
   target: "esnext",
   minify: true,
+  noExternal: ["lodash-es"],
 });
