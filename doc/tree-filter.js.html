@@ -109,15 +109,18 @@
  * @param {Function} handler - 数据处理程序。
  * @param {Number} depth - 递归的深度值，初始为1
  */
+import { cloneDeep } from "lodash-es";
+
 function treeFilter(nodes, handler, depth = 1) {
   return nodes.reduce((acc, item) => {
+    let clonedItem = cloneDeep(item);
     let children =
-      item.children &amp;&amp; item.children.length > 0
-        ? treeFilter(item.children, handler, depth + 1)
+      clonedItem.children &amp;&amp; clonedItem.children.length > 0
+        ? treeFilter(clonedItem.children, handler, depth + 1)
         : [];
-    if (children.length > 0 || handler(item, depth)) {
-      item.children = children;
-      acc.push(item);
+    if (children.length > 0 || handler(clonedItem, depth)) {
+      clonedItem.children = children;
+      acc.push(clonedItem);
     }
     return acc;
   }, []);
