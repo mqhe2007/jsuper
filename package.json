@@ -1,7 +1,7 @@
 {
   "name": "@qingjin/jsuper",
   "version": "1.5.4",
-  "description": "js utils",
+  "description": "jsuper is my commonly used js utils library",
   "main": "dist/index.js",
   "type": "module",
   "files": [
