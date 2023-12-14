@@ -8,18 +8,22 @@
  */
 
 function flatToTree(flatArray: any[], key: string, parentkey: string): any[] {
+  const tree: any[] = [];
   const flatArrayMap: any = {};
   flatArray.forEach((item) => {
-    flatArrayMap[item[key]] = { ...item, children: [] };
+    flatArrayMap[item[key]] = item;
   });
-  return flatArray.reduce((acc, item) => {
+  flatArray.forEach((item) => {
     const parent = flatArrayMap[item[parentkey]];
     if (parent) {
+      if (!parent.children) {
+        parent.children = [];
+      }
       parent.children.push(item);
     } else {
-      acc.push(item);
+      tree.push(item);
     }
-    return acc;
-  }, []);
+  });
+  return tree;
 }
 export default flatToTree;
