@@ -4,35 +4,22 @@
  * @param {Object[]} flatArray - 扁平结构的数组
  * @param {String} key - 用于指定元素的key
  * @param {String} parentkey - 用于指定元素的父元素的key
- * @returns {Object[]} 由树结构组成的数组
+ * @returns {Object[]} 树结构数据
  */
 
 function flatToTree(flatArray: any[], key: string, parentkey: string): any[] {
-  let result: any[] = [];
-  const buildParent = function (item: any): any {
-    const parentIndex = flatArray.findIndex(
-      (item_: any) => item_[key] === item[parentkey]
-    );
-    if (parentIndex > -1) {
-      const parent = flatArray.splice(parentIndex, 1)[0];
-      parent.children = [];
-      parent.children.push(item);
-      if (!parent[parentkey]) {
-        return parent;
-      } else {
-        return buildParent(parent);
-      }
-    } else {
-      return item;
-    }
-  };
-  flatArray.forEach((item: any) => {
-    if (!item[parentkey]) {
-      result.push(item);
-    } else {
-      result.push(buildParent(item));
-    }
+  const flatArrayMap: any = {};
+  flatArray.forEach((item) => {
+    flatArrayMap[item[key]] = { ...item, children: [] };
   });
-  return result;
+  return flatArray.reduce((acc, item) => {
+    const parent = flatArrayMap[item[parentkey]];
+    if (parent) {
+      parent.children.push(item);
+    } else {
+      acc.push(item);
+    }
+    return acc;
+  }, []);
 }
 export default flatToTree;
