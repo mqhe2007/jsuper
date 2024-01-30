@@ -38,10 +38,10 @@
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
-    "@microsoft/api-extractor": "^7.38.5",
+    "@microsoft/api-extractor": "^7.39.4",
     "@types/lodash-es": "^4.17.12",
-    "better-docs": "^2.3.2",
-    "jsdoc": "^3.6.5",
+    "better-docs": "^2.7.3",
+    "jsdoc": "^4.0.2",
     "tsup": "^8.0.1"
   }
 }
